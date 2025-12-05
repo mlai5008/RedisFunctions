@@ -1,0 +1,32 @@
+using StackExchange.Redis;
+
+IConnectionMultiplexer _connectionMultiplexer;
+
+ var db =_connectionMultiplexer.GetDatabase();
+ db.StringGetAsync("key");
+ db.StringSetAsync("key", "item");
+
+
+
+StackExchange.Redis.RedisConnectionException
+  HResult=0x80131500
+  Сообщение = It was not possible to connect to the redis server(s). Error connecting right now. To allow this multiplexer to continue retrying until it's able to connect, use abortConnect=false in your connection string or AbortOnConnectFail=false; in your code. ConnectTimeout
+  Источник = StackExchange.Redis
+  Трассировка стека:
+   в StackExchange.Redis.ConnectionMultiplexer.ConnectImpl(ConfigurationOptions configuration, TextWriter writer, Nullable`1 serverType, EndPointCollection endpoints)
+   в StackExchange.Redis.ConnectionMultiplexer.Connect(ConfigurationOptions configuration, TextWriter log)
+   в StackExchange.Redis.ConnectionMultiplexer.Connect(String configuration, TextWriter log)
+   в WebApiApp.Program.<>c__DisplayClass0_0.<Main>b__0(IServiceProvider sp) в D:\Repos\2\Redis.PubSub.BasicOperatoins\2_Redis.SubscribeService\Redis.SubscribeService\WebApiApp\Program.cs:строка 27
+   в Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   в Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   в Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   в Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   в Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   в Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   в Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   в System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   в Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   в Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   в Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   в Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   в WebApiApp.Program.<Main>d__0.MoveNext() в D:\Repos\2\Redis.PubSub.BasicOperatoins\2_Redis.SubscribeService\Redis.SubscribeService\WebApiApp\Program.cs:строка 44

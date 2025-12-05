@@ -1,0 +1,35 @@
+docker run -d --name redis-stack-server-container -p 6379:6379 redis/redis-stack-server:latest
+
+,abortConnect=false,ssl=true,connectTimeout=5000
+
+2
+StackExchange.Redis.RedisConnectionException
+  HResult=0x80131500
+  Сообщение = The message timed out in the backlog attempting to send because no connection became available (5000ms) - Last Connection Exception: It was not possible to connect to the redis server(s). ConnectTimeout, command=SUBSCRIBE, timeout: 5000, inst: 0, qu: 0, qs: 0, aw: False, bw: CheckingForTimeout, rs: NotStarted, ws: Initializing, in: 0, last-in: 0, cur-in: 0, sync-ops: 0, async-ops: 1, serverEndpoint: localhost:6379, conn-sec: n/a, aoc: 0, mc: 1/1/0, mgr: 10 of 10 available, clientName: DELLYKPC(SE.Redis-v2.7.27.49176), IOCP: (Busy=0,Free=1000,Min=1,Max=1000), WORKER: (Busy=6,Free=32761,Min=2,Max=32767), POOL: (Threads=6,QueuedItems=3,CompletedItems=32,Timers=2), v: 2.7.27.49176 (Please take a look at this article for some common client-side issues that can cause timeouts: https://stackexchange.github.io/StackExchange.Redis/Timeouts)
+  Источник = CommonResources
+  Трассировка стека:
+   в CommonResources.Services.GenericRedisMessageBrokerService`1.<SubscribeAsync>d__5.MoveNext() в D:\Repos\2\Redis.PubSub.BasicOperatoins\1_Redis.PublishService\Redis.PublishService\CommonResources\Services\GenericRedisMessageBrokerService.cs:строка 33
+   в WebApiApp.Program.<Main>d__0.MoveNext() в D:\Repos\2\Redis.PubSub.BasicOperatoins\2_Redis.SubscribeService\Redis.SubscribeService\WebApiApp\Program.cs:строка 45
+
+Внутреннее исключение 1:
+RedisConnectionException: It was not possible to connect to the redis server(s). ConnectTimeout
+
+
+
+
+3
+StackExchange.Redis.RedisConnectionException
+  HResult=0x80131500
+  Сообщение = The message timed out in the backlog attempting to send because no connection became available (5000ms) - Last Connection Exception: It was not possible to connect to the redis server(s) localhost:6379/Subscription. There was an authentication failure; check that passwords (or client certificates) are configured correctly: (IOException) Unable to read data from the transport connection: Операция ввода/вывода была прервана из-за завершения потока команд или по запросу приложения.. ConnectTimeout, command=SUBSCRIBE, timeout: 5000, inst: 0, qu: 0, qs: 0, aw: False, bw: CheckingForTimeout, rs: NotStarted, ws: Initializing, in: 0, last-in: 0, cur-in: 0, sync-ops: 0, async-ops: 1, serverEndpoint: localhost:6379, conn-sec: n/a, aoc: 0, mc: 1/1/0, mgr: 10 of 10 available, clientName: DELLYKPC(SE.Redis-v2.10.1.65101), IOCP: (Busy=0,Free=1000,Min=1,Max=1000), WORKER: (Busy=0,Free=32767,Min=2,Max=32767), POOL: (Threads=3,QueuedItems=0,CompletedItems=52,Timers=1), v: 2.10.1.65101 (Please take a look at this article for some common client-side issues that can cause timeouts: https://stackexchange.github.io/StackExchange.Redis/Timeouts)
+  Источник = 2_Redis.Consumer
+  Трассировка стека:
+   в _2_Redis.SubService.Program.<Main>d__0.MoveNext() в D:\Repos\3\Redis.PublishService\2_Redis.SubService\Program.cs:строка 15
+
+Внутреннее исключение 1:
+RedisConnectionException: It was not possible to connect to the redis server(s) localhost:6379/Subscription. There was an authentication failure; check that passwords (or client certificates) are configured correctly: (IOException) Unable to read data from the transport connection: Операция ввода/вывода была прервана из-за завершения потока команд или по запросу приложения.. ConnectTimeout
+
+Внутреннее исключение 2:
+IOException: Unable to read data from the transport connection: Операция ввода/вывода была прервана из-за завершения потока команд или по запросу приложения..
+
+Внутреннее исключение 3:
+SocketException: Операция ввода/вывода была прервана из-за завершения потока команд или по запросу приложения.
